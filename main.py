@@ -5,6 +5,10 @@ from discord.ext import commands
 import youtube_dl
 import asyncio
 
+#import logging
+
+#logging.basicConfig(level=logging.DEBUG)
+
 install.install() # downloads ffmpeg
 
 runningOnPi = 1 #depending on the python version it needs the full path. on my main pc and the pi, it works with just the file name, but my laptop needs the full path. set to one for rapid debugging
@@ -78,7 +82,6 @@ class sounds(commands.Cog):
     @commands.command()
     async def join(self, ctx, *, channel: discord.VoiceChannel):
         """Joins a voice channel"""
-
         if ctx.voice_client is not None:
             return await ctx.voice_client.move_to(channel)
         await ctx.guild.change_voice_state(channel=channel, self_deaf=True)
